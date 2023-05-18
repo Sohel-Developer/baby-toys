@@ -78,9 +78,11 @@ const Navbar = () => {
                                     <span className="justify-between">
                                         {user?.email}
                                     </span>
-                                </li></>
+                                </li>
+                                <li><button onClick={handleLogOut}>Logout</button></li>
+                            </>
+
                         }
-                        <li><button onClick={handleLogOut}>Logout</button></li>
                     </ul>
                 </div>
             </div>

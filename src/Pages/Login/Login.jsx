@@ -1,7 +1,52 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Provider/AuthProvider';
+import { toast } from 'react-hot-toast';
 
 const Login = () => {
+
+    const { loginUser } = useContext(AuthContext)
+    const navigate = useNavigate();
+
+    const handleLogin = (e) => {
+        e.preventDefault()
+
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        console.log(email, password);
+
+        loginUser(email, password)
+            .then((userCredential) => {
+
+                const user = userCredential.user;
+                console.log("login", user);
+
+                toast.success(' Account Login Successfully🤟 !')
+                navigate('/')
+
+
+            })
+            .catch((error) => {
+
+                const errorMessage = error.message;
+                console.log(errorMessage);
+            });
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
     return (
         <div>
             <div className="max-w-lg mx-auto my-10 bg-white p-8 rounded-xl shadow shadow-slate-300">
@@ -9,15 +54,15 @@ const Login = () => {
                     <h1 className="text-4xl font-medium">Login</h1>
                     <p className="text-slate-500">Hi, Welcome back 👋</p>
                 </div>
-                <form action="" className="my-10">
+                <form onSubmit={handleLogin} className="my-10">
                     <div className="flex flex-col space-y-5">
                         <label htmlFor="email">
                             <p className="font-medium text-slate-700 pb-2">Email address</p>
-                            <input id="email" name="email" type="email" className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Enter email address" />
+                            <input id="email" required name="email" type="email" className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Enter email address" />
                         </label>
                         <label htmlFor="password">
                             <p className="font-medium text-slate-700 pb-2">Password</p>
-                            <input id="password" name="password" type="password" className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Enter your password" />
+                            <input id="password" name="password" required type="password" className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Enter your password" />
                         </label>
                         <div className="flex flex-row justify-between">
                             <div>
