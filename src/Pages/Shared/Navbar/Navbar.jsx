@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Provider/AuthProvider';
 
 const Navbar = () => {
+
+    const { user } = useContext(AuthContext)
+    console.log(user);
 
     const menuItems = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/alltoys'>All Toys</Link></li>
-        <li><Link to='/add'>Add A Toy</Link></li>
         <li><Link to='/blog'>Blog</Link></li>
+        {
+            user?.img ? <>
+                <li><Link to='/add'>Add A Toy</Link></li>
+                <li><Link to='/blog'>My Toys</Link></li>
+            </> : <>
+                <li><Link to='/login'>login</Link></li>
+
+            </>
+        }
     </>
 
     return (
@@ -17,7 +29,7 @@ const Navbar = () => {
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </label>
-                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52  ">
                         {menuItems}
                     </ul>
 
@@ -35,7 +47,10 @@ const Navbar = () => {
                 <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
-                            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                            {
+                                user?.img ? <img src={user.img} /> : <img src="https://t3.ftcdn.net/jpg/05/17/79/88/240_F_517798849_WuXhHTpg2djTbfNf0FQAjzFEoluHpnct.jpg" alt="Profile" />
+                            }
+
                         </div>
                     </label>
                     <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
@@ -53,6 +68,7 @@ const Navbar = () => {
                     </ul>
                 </div>
             </div>
+
         </div>
     );
 };
