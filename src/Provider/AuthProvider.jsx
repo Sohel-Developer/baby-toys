@@ -14,15 +14,18 @@ const AuthProvider = ({ children }) => {
 
 
     const creatUserEmailPassword = (email, password) => {
+        setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
 
     const UpdateUserNamePicture = (info) => {
+        setLoading(true)
         return updateProfile(auth.currentUser, info)
     }
 
     const logOut = () => {
+        setLoading(true)
         signOut(auth)
     }
 
