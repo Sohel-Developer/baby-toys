@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
+import { toast } from 'react-hot-toast';
 
 const Navbar = () => {
 
-    const { user } = useContext(AuthContext)
-    console.log(user);
+    const { user, logOut } = useContext(AuthContext)
+
 
     const menuItems = <>
         <li><Link to='/'>Home</Link></li>
@@ -21,6 +22,18 @@ const Navbar = () => {
             </>
         }
     </>
+
+
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+                // Sign-out successful.
+                toast.success('Successfully🤟 LogOut !')
+            }).catch((error) => {
+                // An error happened.
+            });
+    }
 
     return (
         <div className="navbar bg-base-100">
@@ -54,17 +67,20 @@ const Navbar = () => {
                         </div>
                     </label>
                     <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-                        <li>
-                            <span className="justify-between">
-                                {user?.displayName}
-                            </span>
-                        </li>
-                        <li>
-                            <span className="justify-between">
-                                {user?.email}
-                            </span>
-                        </li>
-                        <li><button>Logout</button></li>
+                        {
+                            user?.email && <>
+                                <li>
+                                    <span className="justify-between">
+                                        {user?.displayName}
+                                    </span>
+                                </li>
+                                <li>
+                                    <span className="justify-between">
+                                        {user?.email}
+                                    </span>
+                                </li></>
+                        }
+                        <li><button onClick={handleLogOut}>Logout</button></li>
                     </ul>
                 </div>
             </div>
