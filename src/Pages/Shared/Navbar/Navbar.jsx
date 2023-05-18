@@ -12,7 +12,7 @@ const Navbar = () => {
         <li><Link to='/alltoys'>All Toys</Link></li>
         <li><Link to='/blog'>Blog</Link></li>
         {
-            user?.img ? <>
+            user?.email ? <>
                 <li><Link to='/add'>Add A Toy</Link></li>
                 <li><Link to='/blog'>My Toys</Link></li>
             </> : <>
@@ -48,7 +48,7 @@ const Navbar = () => {
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
                             {
-                                user?.img ? <img src={user.img} /> : <img src="https://t3.ftcdn.net/jpg/05/17/79/88/240_F_517798849_WuXhHTpg2djTbfNf0FQAjzFEoluHpnct.jpg" alt="Profile" />
+                                user?.img ? <img src={user.image} /> : <img src="https://t3.ftcdn.net/jpg/05/17/79/88/240_F_517798849_WuXhHTpg2djTbfNf0FQAjzFEoluHpnct.jpg" alt="Profile" />
                             }
 
                         </div>
@@ -56,12 +56,12 @@ const Navbar = () => {
                     <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
                         <li>
                             <span className="justify-between">
-                                Name
+                                {user?.displayName}
                             </span>
                         </li>
                         <li>
                             <span className="justify-between">
-                                Email
+                                {user?.email}
                             </span>
                         </li>
                         <li><button>Logout</button></li>
