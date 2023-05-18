@@ -15,29 +15,27 @@ const Register = () => {
         const image = form.image.value;
         const email = form.email.value;
         const password = form.password.value;
-        // const info = {
-        //     displayName: name,
-        //     photoURL: image
-        // }
+        const info = {
+            displayName: name,
+            photoURL: image
+        }
 
-        console.log(name, email, image, password);
-
-
-
+        /* Create User Method Use Context Api */
         creatUserEmailPassword(email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
                 toast.success(' Account Created Successfully🤟 !')
 
-                // UpdateUserNamePicture(info)
-                //     .then(() => {
-                //         // Profile updated!
-                //         toast.success('Auto Profile Update Successfully🤟 !')
-                //         // ...
-                //     }).catch((error) => {
-                //         // An error occurred
-                //         // ...
-                //     });
+                /* User Update  */
+                UpdateUserNamePicture(info)
+                    .then(() => {
+                        // Profile updated!
+                        toast.success('Auto Profile Update Successfully🤟 !')
+                        // ...
+                    }).catch((error) => {
+                        // An error occurred
+                        // ...
+                    });
 
 
             })
@@ -47,6 +45,8 @@ const Register = () => {
                 console.log(errorMessage);
             });
 
+        /* Form Reset */
+        form.reset()
 
 
 
@@ -76,11 +76,11 @@ const Register = () => {
                         </label>
                         <label htmlFor="email">
                             <p className="font-medium text-slate-700 pb-2">Email address</p>
-                            <input id="email" name="email" type="email" className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Enter email address" />
+                            <input id="email" name="email" required type="email" className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Enter email address" />
                         </label>
                         <label htmlFor="password">
                             <p className="font-medium text-slate-700 pb-2">Password</p>
-                            <input id="password" name="password" type="password" className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Enter your password" />
+                            <input id="password" required name="password" type="password" className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Enter your password" />
                         </label>
                         <button type='submit' className="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">
 
