@@ -48,7 +48,12 @@ const Navbar = () => {
 
 
                 </div>
-                <Link to="/" className="  text-xl">Baby Toys</Link>
+                <div>
+
+                    <Link to="/" className=" flex items-center font-bold text-xl">
+                        <img className='w-20' src="https://i.ibb.co/DgmbZPW/Baby-shop-toy-shop-and-baby-product-logo-Graphics-12942644-1-580x386.png" alt="Logo" />
+                        Baby Toys</Link>
+                </div>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
