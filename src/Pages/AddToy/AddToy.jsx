@@ -1,13 +1,58 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import useDocumentTitle from '../../useDocumentTitle/useDocumentTitle';
-
+import { AuthContext } from '../../Provider/AuthProvider';
 const AddToy = () => {
     /* Upadte Title */
     useDocumentTitle('Baby-Toy | AddToy')
 
+
+
     const handleAddToy = (e) => {
+        e.preventDefault()
+
+        const form = e.target;
+        const sellerName = form.sellerName.value;
+        const sellerEmail = form.sellerEmail.value;
+        const price = form.price.value;
+        const rating = form.rating.value;
+        const picture = form.picture.value;
+        const quantity = form.quantity.value;
+        const category = form.category.value;
+        const toyName = form.name.value;
+
+
+        const toyData = {
+            sellerName,
+            sellerEmail,
+            name: toyName,
+            price,
+            rating,
+            picture,
+            quantity,
+            category
+        }
+
+        fetch('http://localhost:5000/alltoys', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(toyData),
+        })
+            .then(response => response.json())
+            .then(result => {
+                console.log('Response:', result);
+                // Handle the response from the server
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Handle any errors that occurred during the request
+            });
+
 
     }
+
+    const { user } = useContext(AuthContext)
 
     return (
         <div className=" mx-auto my-10 bg-white p-8 rounded-xl shadow shadow-slate-300">
@@ -18,60 +63,60 @@ const AddToy = () => {
                 <div className="flex flex-col space-y-5">
                     <div className='flex gap-5'>
                         <div className='w-1/2'>
-                            <label htmlFor="email w-full">
+                            <label htmlFor="sellerName">
                                 <p className="font-medium text-slate-700 pb-2">Seller Name</p>
-                                <input id="email" required name="email" type="email" className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Enter email address" />
+                                <input id="sellerName" name="sellerName" defaultValue={user.displayName} type="text" className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" />
                             </label>
                         </div>
                         <div className='w-1/2'>
-                            <label htmlFor="password">
+                            <label htmlFor="email">
                                 <p className="font-medium text-slate-700 pb-2">Seller Email</p>
-                                <input id="password" name="password" required type="password" className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Enter your password" />
+                                <input id="email" name="sellerEmail" defaultValue={user.email} type="email" className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" />
                             </label>
                         </div>
                     </div>
                     <div className='flex gap-5 '>
                         <div className='w-1/2'>
-                            <label htmlFor="email w-full">
+                            <label htmlFor="name">
                                 <p className="font-medium text-slate-700 pb-2">Toy Name</p>
-                                <input id="email" required name="email" type="email" className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Enter email address" />
+                                <input id="name" name="name" type="text" className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Toy Name" />
                             </label>
                         </div>
                         <div className='w-1/2'>
                             <label htmlFor="password">
                                 <p className="font-medium text-slate-700 pb-2">Price</p>
-                                <input id="password" name="password" required type="password" className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Enter your password" />
+                                <input id="price" name="price" type="number" className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Toy price" />
                             </label>
                         </div>
                     </div>
                     <div className='flex gap-5'>
                         <div className='w-1/2'>
-                            <label htmlFor="email w-full">
+                            <label htmlFor="quantity">
                                 <p className="font-medium text-slate-700 pb-2">Quantity</p>
-                                <input id="email" required name="email" type="email" className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Enter email address" />
+                                <input id="quantity" name="quantity" type="number" className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Quantity" />
                             </label>
                         </div>
                         <div className='w-1/2'>
-                            <label htmlFor="password">
+                            <label htmlFor="picture">
                                 <p className="font-medium text-slate-700 pb-2">Picture</p>
-                                <input id="password" name="password" required type="password" className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Enter your password" />
+                                <input id="picture" name="picture" type="text" className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Price" />
                             </label>
                         </div>
                     </div>
                     <div className='flex gap-5 '>
                         <div className='w-1/2'>
-                            <label htmlFor="email w-full">
+                            <label htmlFor="rating">
                                 <p className="font-medium text-slate-700 pb-2">Rating</p>
-                                <input id="email" required name="email" type="email" className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Enter email address" />
+                                <input id="rating" name="rating" type="number" className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Rating" />
                             </label>
                         </div>
                         <div className='w-1/2'>
                             <p className="font-medium text-slate-700 pb-2">Category</p>
 
-                            <select id='category' className="select select-primary w-full max-w-xs">
-                                <option value="bus">bus</option>
-                                <option value="truck">truck</option>
-                                <option value="ambulance">ambulance</option>
+                            <select id='category' name='category' className="select select-primary w-full max-w-xs">
+                                <option value="sportsCars">sportsCars</option>
+                                <option value="movieCars">movieCars</option>
+                                <option value="construction">construction</option>
                             </select>
 
                         </div>
