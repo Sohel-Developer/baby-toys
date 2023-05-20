@@ -13,6 +13,7 @@ const Home = () => {
             <Shop />
             <Offer />
             <Subscribe />
+
         </div>
     );
 };

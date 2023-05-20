@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import Card from './Card';
+import Details from './Details';
 
 const Shop = () => {
     const [toys, setToys] = useState([])
@@ -13,10 +14,6 @@ const Shop = () => {
             .then(data => setToys(data))
     }, [])
 
-
-    const allToy = () => {
-        setShowToys(toys)
-    }
 
     const sportsCar = () => {
         const sports = toys.filter(toy => toy.category === "sportsCars")
@@ -41,7 +38,7 @@ const Shop = () => {
         <div className='my-10'>
             <Tabs>
                 <TabList>
-                    <Tab onClick={allToy}>All Toys</Tab>
+                    <Tab>All Toys</Tab>
                     <Tab onClick={sportsCar}>Sports Cars</Tab>
                     <Tab onClick={movieCars}>Movie Cars</Tab>
                     <Tab onClick={construction}>Construction Vehicles</Tab>
@@ -50,7 +47,7 @@ const Shop = () => {
                 <TabPanel>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  my-5 gap-5'>
                         {
-                            showToys.map(toy => <Card toy={toy} key={toy._id}></Card>)
+                            toys.map(toy => <Card toy={toy} key={toy._id}></Card>)
                         }
                     </div>
                 </TabPanel>
