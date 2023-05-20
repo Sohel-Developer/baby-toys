@@ -35,7 +35,7 @@ const Shop = () => {
     }
 
     return (
-        <div className='my-10'>
+        <div className='p-5 my-10'>
             <Tabs>
                 <TabList>
                     <Tab>All Toys</Tab>
@@ -45,21 +45,21 @@ const Shop = () => {
                 </TabList>
 
                 <TabPanel>
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  my-5 gap-5'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-5  my-5 gap-5'>
                         {
                             toys.map(toy => <Card toy={toy} key={toy._id}></Card>)
                         }
                     </div>
                 </TabPanel>
                 <TabPanel>
-                    <div className='grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 my-5 gap-5'>
+                    <div className='grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 p-5  my-5 gap-5'>
                         {
                             showToys.map(toy => <Card toy={toy} key={toy._id}></Card>)
                         }
                     </div>
                 </TabPanel>
                 <TabPanel>
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  my-5 gap-5'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  p-5  my-5 gap-5'>
                         {
                             showToys.map(toy => <Card toy={toy} key={toy._id}></Card>)
                         }
