@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#banner {
+    background-image: url('https://i.ibb.co/6NNHb2q/2-1.webp');
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+}
