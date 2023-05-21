@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
 import Toys from './Toys';
+import { toast } from 'react-hot-toast';
 
 const MyToys = () => {
 
@@ -17,13 +18,14 @@ const MyToys = () => {
     }, [url])
 
     const deleteHandler = (id) => {
-        const url = `http://localhost:5000/mytoys/${id}`
+        const url = `https://baby-toy-server.vercel.app/mytoys/${id}`
         fetch(url, {
             method: "DELETE"
         })
             .then(res => res.json())
             .then(data => {
 
+                toast.success('  Successfully🤟 Deleted !')
 
                 const remaning = myToys.filter(toy => toy._id !== id)
                 setMyToys(remaning)

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef } from 'react';
 import useDocumentTitle from '../../useDocumentTitle/useDocumentTitle';
 import { AuthContext } from '../../Provider/AuthProvider';
+import { toast } from 'react-hot-toast';
 const AddToy = () => {
     /* Upadte Title */
     useDocumentTitle('Baby-Toy | AddToy')
@@ -42,7 +43,7 @@ const AddToy = () => {
             .then(response => response.json())
             .then(result => {
                 if (result.acknowledged) {
-                    alert("Susce")
+                    toast.success('  Successfully🤟 Added !')
                 }
             })
             .catch(error => {
@@ -50,8 +51,10 @@ const AddToy = () => {
                 // Handle any errors that occurred during the request
             });
 
-
+        form.reset()
     }
+
+
 
     const { user } = useContext(AuthContext)
 
