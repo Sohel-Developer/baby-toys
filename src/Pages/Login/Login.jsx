@@ -5,7 +5,7 @@ import { toast } from 'react-hot-toast';
 
 const Login = () => {
 
-    const { loginUser } = useContext(AuthContext)
+    const { loginUser, googleLogin } = useContext(AuthContext)
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -28,7 +28,6 @@ const Login = () => {
             .then((userCredential) => {
 
                 const user = userCredential.user;
-                console.log("login", user);
 
                 toast.success(' Account Login Successfully🤟 !')
                 navigate(from, { replace: true })
@@ -42,6 +41,23 @@ const Login = () => {
             });
 
 
+
+    }
+
+
+    const GoogleLogin = () => {
+        googleLogin()
+            .then((result) => {
+                const user = result.user;
+
+                toast.success(' Account Login Successfully🤟 !')
+                navigate(from, { replace: true })
+
+                // ...
+            }).catch((error) => {
+                const errorMessage = error.message;
+                // ...
+            });
 
     }
 
@@ -61,7 +77,7 @@ const Login = () => {
                     <h1 className="text-4xl font-medium">Login</h1>
                     <p className="text-slate-500">Hi, Welcome back 👋</p>
                 </div>
-                <form onSubmit={handleLogin} className="my-10">
+                <form onSubmit={handleLogin} className="mt-10 mb-4">
                     <div className="flex flex-col space-y-5">
                         <label htmlFor="email">
                             <p className="font-medium text-slate-700 pb-2">Email address</p>
@@ -85,11 +101,16 @@ const Login = () => {
                         <button type='submit' className="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">
                             <span>Submit</span>
                         </button>
-                        <p className="text-center">Not registered yet? <Link to="/register" className="text-indigo-600 font-medium inline-flex space-x-1 items-center"><span>Register now </span><span><svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" >
 
-                        </svg></span></Link></p>
                     </div>
                 </form>
+                <button onClick={GoogleLogin} className=" py-3 px-4 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">
+                    Google Login
+                </button>
+
+                <p className="text-center mt-4">Not registered yet? <Link to="/register" className="text-indigo-600 font-medium inline-flex space-x-1 items-center"><span>Register now </span><span><svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" >
+
+                </svg></span></Link></p>
             </div>
         </div>
 
