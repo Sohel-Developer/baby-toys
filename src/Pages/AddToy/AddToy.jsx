@@ -41,8 +41,9 @@ const AddToy = () => {
         })
             .then(response => response.json())
             .then(result => {
-                console.log('Response:', result);
-                // Handle the response from the server
+                if (result.acknowledged) {
+                    alert("Susce")
+                }
             })
             .catch(error => {
                 console.error('Error:', error);

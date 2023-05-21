@@ -16,6 +16,23 @@ const MyToys = () => {
             .then(data => setMyToys(data))
     }, [url])
 
+    const deleteHandler = (id) => {
+        const url = `http://localhost:5000/mytoys/${id}`
+        fetch(url, {
+            method: "DELETE"
+        })
+            .then(res => res.json())
+            .then(data => {
+
+
+                const remaning = myToys.filter(toy => toy._id !== id)
+                setMyToys(remaning)
+
+
+
+            })
+    }
+
 
     return (
         <div>
@@ -35,7 +52,7 @@ const MyToys = () => {
                             <tbody className='space-y-5' >
 
                                 {
-                                    myToys.map(toy => <Toys key={toy._id} toy={toy} ></Toys>)
+                                    myToys.map(toy => <Toys key={toy._id} deleteHandler={deleteHandler} toy={toy} ></Toys>)
                                 }
 
                             </tbody>

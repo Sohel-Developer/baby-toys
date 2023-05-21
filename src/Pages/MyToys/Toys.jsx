@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Toys = ({ toy }) => {
-    const { name, sellerEmail, price, category, rating, picture, quantity } = toy;
+const Toys = ({ toy, deleteHandler }) => {
+    const { name, _id, sellerEmail, price, category, picture, quantity } = toy;
     return (
         <tr className='border-b-2 border-gray-600 my-5'>
             <td className="p-3">
@@ -29,9 +29,9 @@ const Toys = ({ toy }) => {
                 <a href="#" className="text-gray-400 hover:text-gray-400  mx-2">
                     <i className="material-icons-outlined text-base">edit</i>
                 </a>
-                <a href="#" className="text-gray-400 hover:text-gray-400  ml-2">
+                <button onClick={() => deleteHandler(_id)} className="text-gray-400 hover:text-gray-400  ml-2">
                     <i className="material-icons-round text-base">delete_outline</i>
-                </a>
+                </button>
             </td>
         </tr>
 
