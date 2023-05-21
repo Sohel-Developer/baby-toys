@@ -4,6 +4,7 @@ import Feature from '../Feature/Feature';
 import Offer from '../Offer/Offer';
 import Subscribe from '../Subscribe/Subscribe';
 import Shop from '../Shop/Shop';
+import Gallery from '../../Gallery/Gallery';
 
 const Home = () => {
     return (
@@ -11,6 +12,7 @@ const Home = () => {
             <Banner />
             <Feature />
             <Shop />
+            <Gallery />
             <Offer />
             <Subscribe />
 

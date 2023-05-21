@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
 
 const Details = () => {
 
-    const [toy, setToy] = useState({})
+    const [toys, setToy] = useState({})
 
-    const url = ``
+    // const url = ``
 
-    useEffect(() => {
-        fetch()
-    }, [])
+    // useEffect(() => {
+    //     fetch()
+    // }, [])
+
+    const toy = useLoaderData()
 
 
     const { picture, name, rating, price, description } = toy;
