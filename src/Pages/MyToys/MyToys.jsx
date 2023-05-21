@@ -8,7 +8,7 @@ const MyToys = () => {
 
     const { user } = useContext(AuthContext)
 
-    const url = `http://localhost:5000/mytoys?email=${user.email}`
+    const url = `https://baby-toy-server.vercel.app/mytoys?email=${user.email}`
 
     useEffect(() => {
         fetch(url)

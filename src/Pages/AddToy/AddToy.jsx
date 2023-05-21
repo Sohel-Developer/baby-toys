@@ -32,7 +32,7 @@ const AddToy = () => {
             category
         }
 
-        fetch('http://localhost:5000/alltoys', {
+        fetch('https://baby-toy-server.vercel.app/alltoys', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

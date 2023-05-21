@@ -2,14 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import Card from './Card';
-import Details from './Details';
 
 const Shop = () => {
     const [toys, setToys] = useState([])
     const [showToys, setShowToys] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/alltoys')
+        fetch('https://baby-toy-server.vercel.app/alltoys')
             .then(res => res.json())
             .then(data => setToys(data))
     }, [])
